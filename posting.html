@@ -8,7 +8,7 @@
 </head>
 
 <body>
-
+  <div id ="app">
   <nav class="navbar navbar-expand-lg navbar-light bg-primary">
   <a class="navbar-brand" href="#">J&S</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,18 +18,18 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="/creativep1/index.html">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle nav-item active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Buy/Sale
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item bold" href="/creativep1/listing.html">Listings</a>
-          <a class="dropdown-item bold" href="/creativep1/posting.html">Put up for Sale</a>
+          <a class="dropdown-item bold" href="/listing.html">Listings</a>
+          <a class="dropdown-item bold" href="/posting.html">Put up for Sale</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="/creativep1/comment.html">Donations</a>
+        <a class="nav-link" href="/comment.html">Donations</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -41,29 +41,29 @@
 
   <h1 class ="retroshadow bottom">Submit Listings Here</h1>
 
-  <form>
+  <form v-on:submit.prevent="addListing">
   <div class="form-group row">
-    <label for="inputEmail3" class="col-sm-2 col-form-label">Your Name</label>
+    <label class="col-sm-2 col-form-label">Your Name</label>
     <div class="col-sm-5 center">
-      <input class="form-control" placeholder="First and Last Name">
+      <input v-model="addedName" class="form-control" placeholder="First and Last Name">
     </div>
   </div>
   <div class="form-group row">
-    <label for="inputEmail3" class="col-sm-2 col-form-label">Your Number</label>
+    <label class="col-sm-2 col-form-label">Your Number</label>
     <div class="col-sm-5 center">
-      <input class="form-control" placeholder="Phone Number">
+      <input v-model="addedNumber" class="form-control" placeholder="Phone Number">
     </div>
   </div>
   <div class="form-group row">
-    <label for="inputPassword3" class="col-sm-2 col-form-label">Type of Animal</label>
+    <label class="col-sm-2 col-form-label">Type of Animal</label>
     <div class="col-sm-5">
-      <input class="form-control" placeholder="Animal type">
+      <input v-model="addedAnimal" class="form-control" placeholder="Animal type">
     </div>
   </div>
   <div class="form-group row">
-    <label for="inputPassword3" class="col-sm-2 col-form-label">Price</label>
+    <label class="col-sm-2 col-form-label">Price</label>
     <div class="col-sm-5">
-      <input class="form-control" placeholder="$$">
+      <input v-model="addedPrice" class="form-control" placeholder="$$">
     </div>
   </div>
   <fieldset class="form-group">
@@ -71,13 +71,13 @@
       <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
       <div class="col-sm-10">
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="Male" v-model ="addedGender">
           <label class="form-check-label" for="gridRadios1">
             Male
           </label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="Female" v-model ="addedGender">
           <label class="form-check-label" for="gridRadios2">
             Female
           </label>
@@ -88,8 +88,9 @@
   <div class="form-group row">
     <div class="col-sm-10">
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="gridCheck1">
-        <label class="form-check-label" for="gridCheck1">
+        <input class="form-check-input" type="checkbox" id="gridCheck1" v-model = "checked">
+        <label class="form-check-label" for="gridCheck1" value ="You are Subscribed">
+
           Newsletter and Coupon
         </label>
       </div>
@@ -102,10 +103,24 @@
   </div>
 </form>
 
+<h3> Listings You Have Posted </h3>
+<div v-for="listing in listings">
+  <p> {{listing.name}}</p>
+  <p> {{listing.price}}</p>
+  <p> {{listing.animal}}</p>
+  <p> {{listing.gender}}</p>
+  <p> {{listing.phone}} </p>
+</div>
+
+
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.2/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="/script.js"></script>
+</div>
 </body>
 
 <footer class = "center">

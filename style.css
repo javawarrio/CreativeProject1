@@ -101,3 +101,26 @@ img {
   font-weight: bold;
   font-size: 18px;
 }
+.bar {
+  background: linear-gradient(to right, #B993D6, #8CA6DB);
+  height: 20px;
+  width: 15px;
+  border-radius: 9px;
+  span {
+    float: right;
+    padding: 4px 5px;
+    color: #fff;
+    font-size: 0.7em
+  }
+}
+
+button {
+  margin: 10px;
+  border: 1px solid #aaa;
+  background: none;
+  border-radius: 50%;
+  padding: 5px 8px;
+  outline: none;
+  cursor: pointer;
+  width: 200px;
+}
